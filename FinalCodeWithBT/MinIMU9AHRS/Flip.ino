@@ -1,5 +1,5 @@
-#define PIN_ENABLE 6
-#define PIN_PHASE 3
+#define PIN_ENABLE 10
+#define PIN_PHASE 16
 
 
 void flip(void){

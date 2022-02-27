@@ -90,18 +90,18 @@ void printdata(void)
       char junk;
       String inputString="";
 
-      if(Serial.available()){
-      while(Serial.available())
+      if(MyBlue.available()){
+      while(MyBlue.available())
         {
-          char inChar = (char)Serial.read(); //read the input
+          char inChar = (char)MyBlue.read(); //read the input
           inputString += inChar;        //make a string of the characters coming on serial
         }
-        Serial.println(inputString);
+        MyBlue.println(inputString);
 //        while (Serial.available() > 0)  
 //        { junk = Serial.read() ; }      // clear the serial buffer
         if(inputString != NULL){
-          Serial.println("Here!");  //in case of 'a' turn the LED on
-          jump();  
+          MyBlue.println("Here!");  //in case of 'a' turn the LED on
+          jump();
         }
         inputString = "";
       }

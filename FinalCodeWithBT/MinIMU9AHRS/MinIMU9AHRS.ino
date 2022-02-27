@@ -51,6 +51,9 @@ int SENSOR_SIGN[9] = {1,1,1,-1,-1,-1,1,1,1}; //Correct directions x,y,z - gyro, 
 // tested with Arduino Uno with ATmega328 and Arduino Duemilanove with ATMega168
 
 #include <Wire.h>
+#include <SoftwareSerial.h>
+
+SoftwareSerial MyBlue(5, 8); // RX | TX 
 
 // accelerometer: 8 g sensitivity
 // 3.9 mg/digit; 1 g = 256
@@ -154,14 +157,16 @@ float Temporary_Matrix[3][3]={
     0,0,0  }
 };
 
-#define PIN_ENABLE 6
-#define PIN_PHASE 3
-#define PIN_BUTTON 2
+#define PIN_ENABLE 10
+#define PIN_PHASE 16
+#define PIN_BUTTON 7
 
 void setup()
 {
   Serial.begin(115200);
-  
+  MyBlue.begin(115200);
+
+  pinMode(13, OUTPUT);
   pinMode(PIN_ENABLE, OUTPUT);
   pinMode(PIN_PHASE, OUTPUT);
   pinMode(PIN_BUTTON, INPUT);
@@ -209,6 +214,8 @@ void setup()
 
 void loop() //Main Loop
 {
+  digitalWrite(13, HIGH);
+
   if((millis()-timer)>=20)  // Main loop runs at 50Hz
   {
     counter++;
