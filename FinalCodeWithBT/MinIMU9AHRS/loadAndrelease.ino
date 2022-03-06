@@ -16,7 +16,10 @@
 //            char data = (char)bluetooth.read();
 //            Serial.print(data); 
 //            if(data == 'S'){
-//              stopRot();
+//              //  digitalWrite(PIN_ENABLE, LOW); // Turn Off the motor
+                //  digitalWrite(PIN_PHASE, LOW);
+                //  Serial.println("Stoped Rotation");
+                //  break;
 //            }
 // 
 //          }
@@ -42,7 +45,10 @@
 //            char data = (char)bluetooth.read();
 //            Serial.print(data); 
 //            if(data == 'S'){
-//              stopRot();
+//              digitalWrite(PIN_ENABLE, LOW); // Turn Off the motor
+                //  digitalWrite(PIN_PHASE, LOW);
+                //  Serial.println("Stoped Rotation");
+                //  break;
 //            }
 // 
 //          }
@@ -52,10 +58,4 @@
 //  Serial.println("Released");
 //  digitalWrite(PIN_ENABLE, LOW); // Turn Off the motor
 //  digitalWrite(PIN_PHASE, LOW);
-//}
-//
-//void stopRot(void){
-//  digitalWrite(PIN_ENABLE, LOW); // Turn Off the motor
-//  digitalWrite(PIN_PHASE, LOW);
-//  Serial.println("Stoped Rotation");
 //}

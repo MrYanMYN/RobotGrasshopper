@@ -22,7 +22,10 @@ void jump(void){
 //            char data = (char)bluetooth.read();
 //            Serial.print(data); 
 //            if(data == 'S'){
-//              stopRot();
+//              digitalWrite(PIN_ENABLE, LOW); // Turn Off the motor
+                //  digitalWrite(PIN_PHASE, LOW);
+                //  Serial.println("Stoped Rotation");
+                //  break;                                                               
 //          }
 //     }
 //    

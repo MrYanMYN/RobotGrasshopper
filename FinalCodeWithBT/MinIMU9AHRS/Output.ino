@@ -107,7 +107,7 @@ void printdata(void)
             // Send any characters the bluetooth prints to the serial monitor
             char data = (char)bluetooth.read();
             Serial.print(data); 
-            if(data == 'A'){
+            if(data == '⸮' || data == '?' || data=='A'){
               jump();
             }
 //            if(data == 'C'){
@@ -115,9 +115,6 @@ void printdata(void)
 //            }
 //            if(data == 'D'){
 //              releas();
-//            }
-//            if(data == 'S'){
-//              stopRot();
 //            }
  
           }
