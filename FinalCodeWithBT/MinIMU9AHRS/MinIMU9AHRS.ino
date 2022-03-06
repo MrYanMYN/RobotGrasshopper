@@ -53,7 +53,10 @@ int SENSOR_SIGN[9] = {1,1,1,-1,-1,-1,1,1,1}; //Correct directions x,y,z - gyro, 
 #include <Wire.h>
 #include <SoftwareSerial.h>
 
-SoftwareSerial MyBlue(5, 8); // RX | TX 
+int bluetoothTx = 8;  // TX-O pin of bluetooth mate, Arduino D2
+int bluetoothRx = 5;  // RX-I pin of bluetooth mate, Arduino D3
+
+SoftwareSerial bluetooth(bluetoothTx, bluetoothRx);
 
 // accelerometer: 8 g sensitivity
 // 3.9 mg/digit; 1 g = 256
@@ -164,8 +167,18 @@ float Temporary_Matrix[3][3]={
 void setup()
 {
   Serial.begin(115200);
-  MyBlue.begin(115200);
+    bluetooth.begin(115200);  // The Bluetooth Mate defaults to 115200bps
+  bluetooth.print("$");  // Print three times individually
+  bluetooth.print("$");
+  bluetooth.print("$");  // Enter command mode
+  delay(100);  // Short delay, wait for the Mate to send back CMD
+  bluetooth.println("U,9600,N");  // Temporarily Change the baudrate to 9600, no parity
+  // 115200 can be too fast at times for NewSoftSerial to relay the data reliably
+  bluetooth.begin(9600);  // Start bluetooth serial at 9600
 
+  pinMode(5 , OUTPUT);
+  digitalWrite(5 , HIGH);
+  
   pinMode(13, OUTPUT);
   pinMode(PIN_ENABLE, OUTPUT);
   pinMode(PIN_PHASE, OUTPUT);

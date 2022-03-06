@@ -82,29 +82,51 @@ void printdata(void)
       #endif
       Serial.println();
 
-      if(AN[5] < -9){
+      if(AN[5] < -9.5){
         flip();
       }
 
-
-      char junk;
-      String inputString="";
-
-      if(MyBlue.available()){
-      while(MyBlue.available())
-        {
-          char inChar = (char)MyBlue.read(); //read the input
-          inputString += inChar;        //make a string of the characters coming on serial
-        }
-        MyBlue.println(inputString);
-//        while (Serial.available() > 0)  
-//        { junk = Serial.read() ; }      // clear the serial buffer
-        if(inputString != NULL){
-          MyBlue.println("Here!");  //in case of 'a' turn the LED on
-          jump();
-        }
-        inputString = "";
-      }
+//      if(MyBlue.available()){
+//      while(MyBlue.available())
+//        {
+//          char inChar = (char)MyBlue.read(); //read the input
+//          inputString += inChar;        //make a string of the characters coming on serial
+//        }
+//        MyBlue.println(inputString);
+////        while (Serial.available() > 0)  
+////        { junk = Serial.read() ; }      // clear the serial buffer
+//        if(inputString != NULL){
+//          MyBlue.println("Here!");  //in case of 'a' turn the LED on
+//          jump();
+//        }
+//        inputString = "";
+//      }
+        
+        if(bluetooth.available())  // If the bluetooth sent any characters
+          {
+            // Send any characters the bluetooth prints to the serial monitor
+            char data = (char)bluetooth.read();
+            Serial.print(data); 
+            if(data == 'A'){
+              jump();
+            }
+//            if(data == 'C'){
+//              load();
+//            }
+//            if(data == 'D'){
+//              releas();
+//            }
+//            if(data == 'S'){
+//              stopRot();
+//            }
+ 
+          }
+          if(Serial.available())  // If stuff was typed in the serial monitor
+          {
+            // Send any characters the Serial monitor prints to the bluetooth
+            bluetooth.print((char)Serial.read());
+          }
+          // and loop forever and ever!
       
 }
 
