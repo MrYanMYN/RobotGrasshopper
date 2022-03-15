@@ -86,45 +86,47 @@ void printdata(void)
         flip();
       }
 
-//      if(MyBlue.available()){
-//      while(MyBlue.available())
-//        {
-//          char inChar = (char)MyBlue.read(); //read the input
-//          inputString += inChar;        //make a string of the characters coming on serial
-//        }
-//        MyBlue.println(inputString);
-////        while (Serial.available() > 0)  
-////        { junk = Serial.read() ; }      // clear the serial buffer
-//        if(inputString != NULL){
-//          MyBlue.println("Here!");  //in case of 'a' turn the LED on
-//          jump();
-//        }
-//        inputString = "";
-//      }
-        
-        if(bluetooth.available())  // If the bluetooth sent any characters
-          {
-            // Send any characters the bluetooth prints to the serial monitor
-            char data = (char)bluetooth.read();
-            Serial.print(data); 
-            if(data == '⸮' || data == '?' || data=='A'){
-              jump();
-            }
-//            if(data == 'C'){
-//              load();
-//            }
-//            if(data == 'D'){
-//              releas();
-//            }
- 
-          }
-          if(Serial.available())  // If stuff was typed in the serial monitor
-          {
-            // Send any characters the Serial monitor prints to the bluetooth
-            bluetooth.print((char)Serial.read());
-          }
-          // and loop forever and ever!
+      String inputString = "";
       
+      if(bluetooth.available()){
+      while(bluetooth.available())
+        {
+          char inChar = (char)bluetooth.read(); //read the input
+          inputString += inChar;        //make a string of the characters coming on serial
+        }
+        Serial.println(inputString);
+//        while (Serial.available() > 0)  
+//        { junk = Serial.read() ; }      // clear the serial buffer
+        if(inputString != NULL){
+          Serial.println("Here!");  //in case of 'a' turn the LED on
+          jump();
+        }
+        inputString = "";
+      }
+//        
+//        if(bluetooth.available())  // If the bluetooth sent any characters
+//          {
+//            // Send any characters the bluetooth prints to the serial monitor
+//            char data = (char)bluetooth.read();
+//            Serial.print(data); 
+//            if(data == '⸮' || data == '?' || data=='A'){
+//              jump();
+//            }
+////            if(data == 'C'){
+////              load();
+////            }
+////            if(data == 'D'){
+////              releas();
+////            }
+// 
+//          }
+//          if(Serial.available())  // If stuff was typed in the serial monitor
+//          {
+//            // Send any characters the Serial monitor prints to the bluetooth
+//            bluetooth.print((char)Serial.read());
+//          }
+//          // and loop forever and ever!
+//      
 }
 
 /*long convert_to_dec(float x)

@@ -166,6 +166,7 @@ float Temporary_Matrix[3][3]={
 
 void setup()
 {
+//  init_Line();
   Serial.begin(115200);
     bluetooth.begin(115200);  // The Bluetooth Mate defaults to 115200bps
   bluetooth.print("$");  // Print three times individually
@@ -234,7 +235,7 @@ void loop() //Main Loop
     counter++;
     timer_old = timer;
     timer=millis();
-    if (timer>timer_old)
+      if (timer>timer_old)    
     {
       G_Dt = (timer-timer_old)/1000.0;    // Real time of loop run. We use this on the DCM algorithm (gyro integration time)
       if (G_Dt > 0.2)
